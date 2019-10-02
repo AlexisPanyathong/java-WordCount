@@ -14,15 +14,41 @@ public class Main
         System.out.println("*** HashMaps ***");
 		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 
-		
+		//For Loop
 		for ( String w : words)
 		{
             int hashcount = hashMap.containsKey(w) ? hashMap.get(w) : 0;
-
             hashMap.put(w, hashcount +1);
+
+
+		    System.out.println(w);
+
 		}
 
         //Make a sorted list, ArrayList 
-		
+        for (String i : hashMap.keySet())
+       {
+           System.out.println("key:" + i + " value: " + hashMap.get(i));
+       }
+            System.out.println();
+
+
+        ArrayList<HashMap.Entry<String, Integer>> sortedWords = new ArrayList<HashMap.Entry<String, Integer>>();
+        sortedWords.addAll(hashMap.entrySet());
+
+	
+        Collections.sort(sortedWords, new Comparator<HashMap.Entry<String, Integer>>()
+        {
+            public int compare(HashMap.Entry<String, Integer> o1, HashMap.Entry<String, Integer> o2)
+            {
+                // return o1.getValue().compareTo(o2.getValue());
+                return o2.getValue() - o1.getValue();
+            }
+        });
+
+        for (int i = 0; i < 50; i++)
+        {
+            System.out.println("word: " + sortedWords.get(i).getKey() + "count: " + sortedWords.get(i).getValue());
+        }
     }
 }
